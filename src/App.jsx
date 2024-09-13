@@ -1,23 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styles from "./App.module.css";
+import Questions from "./api/questions";
 
 function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState("");
   const [feedback, setFeedback] = useState("");
-
-  const questions = [
-    {
-      question: "What is the capital of France?",
-      options: ["London", "Paris", "Berlin", "Madrid"],
-      correct: "Paris",
-    },
-    {
-      question: "What is the capital of Germany?",
-      options: ["Berlin", "Munich", "Frankfurt", "Hamburg"],
-      correct: "Berlin",
-    },
-  ];
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -59,7 +47,7 @@ function App() {
     <>
       <div className={styles.container}>
         <div id="question" className={styles.question}>
-          {questions[currentQuestion].question}
+          {Questions[currentQuestion].question}
         </div>
         <form onSubmit={handleSubmit}>
           <label htmlFor="selecaoItens">Options:</label>
@@ -69,7 +57,7 @@ function App() {
             onChange={(e) => setSelectedOption(e.target.value)}
           >
             <option value="">Select an option</option>
-            {questions[currentQuestion].options.map((item, index) => (
+            {Questions[currentQuestion].options.map((item, index) => (
               <option key={index} value={item}>
                 {item}
               </option>
